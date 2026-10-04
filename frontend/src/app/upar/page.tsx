@@ -40,7 +40,7 @@ export default function UparPage() {
         setProgress(Number(percentage));
       },
       onSuccess: function () {
-        console.log("Download %s from %s", upload.file.name, upload.url);
+        console.log("Upload finalizado para", upload.url);
         // Extract the TUS file ID from the url
         const urlObj = new URL(upload.url!);
         const id = urlObj.pathname.split("/").pop();

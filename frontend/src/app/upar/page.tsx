@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import Link from "next/link";
 import { useRef, useState } from "react";
 import * as tus from "tus-js-client";
@@ -24,7 +24,7 @@ export default function UparPage() {
     setUploading(true);
     
     const upload = new tus.Upload(selectedFile, {
-      endpoint: "http://localhost:3001/files",
+      endpoint: `${process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001"}/files`,
       retryDelays: [0, 3000, 5000, 10000, 20000],
       metadata: {
         filename: selectedFile.name,
@@ -58,8 +58,8 @@ export default function UparPage() {
         <Link href="/" className="text-blue-400 hover:underline mb-8 inline-block">
           &larr; Voltar
         </Link>
-        <h1 className="text-3xl font-bold mb-4">📤 Upar Vídeo ou Imagem</h1>
-        <p className="text-slate-400 mb-8">Faça o upload do seu conteúdo para gerar um link exclusivo.</p>
+        <h1 className="text-3xl font-bold mb-4">ðŸ“¤ Upar VÃ­deo ou Imagem</h1>
+        <p className="text-slate-400 mb-8">FaÃ§a o upload do seu conteÃºdo para gerar um link exclusivo.</p>
         
         <div 
           className="border-2 border-dashed border-slate-700 rounded-2xl p-12 flex flex-col items-center justify-center bg-slate-900/50 hover:border-indigo-500 transition-colors cursor-pointer"
@@ -97,7 +97,7 @@ export default function UparPage() {
                   className="bg-indigo-500 h-4 transition-all duration-300 ease-out" 
                   style={{ width: `${progress}%` }}
                 ></div>
-                <p className="text-center text-sm mt-2">{progress}% concluído...</p>
+                <p className="text-center text-sm mt-2">{progress}% concluÃ­do...</p>
               </div>
             ) : (
               <button 
@@ -110,7 +110,7 @@ export default function UparPage() {
 
             {uploadUrl && (
               <div className="mt-6 p-6 bg-slate-900 border border-slate-700 rounded-xl w-full max-w-md text-center">
-                <p className="text-green-400 font-bold mb-4">🎉 Upload concluído com sucesso!</p>
+                <p className="text-green-400 font-bold mb-4">ðŸŽ‰ Upload concluÃ­do com sucesso!</p>
                 <p className="text-sm text-slate-400 mb-2">Seu link exclusivo:</p>
                 <input 
                   type="text" 
